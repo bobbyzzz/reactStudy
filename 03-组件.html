@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件</title>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+</body>
+<!-- 引用react的js库 -->
+<script src="https://cdn.bootcss.com/react/16.9.0/umd/react.development.js"></script>
+<!-- 引用react的dom -->
+<script src="https://cdn.bootcss.com/react-dom/16.9.0/umd/react-dom.development.js"></script>
+<!-- 引用babel -->
+<script src="https://cdn.bootcss.com/babel-standalone/6.25.0/babel.js"></script>
+<script type="text/babel">
+    // 简单组件，不能定义状态
+function F1(){
+    return (
+        <div>
+        hello world
+        </div>
+    )
+}
+function App(){
+    return (
+        <div>
+        <F1></F1>
+        <F1></F1>
+        <F1></F1>
+        <F1></F1>
+        </div>
+    )
+}
+ReactDOM.render(<App/>,document.getElementById("app"))
+</script>
+
+</html>

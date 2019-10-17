@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>阻止默认行为</title>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+<!-- react 核心库 -->
+<script src="https://cdn.bootcss.com/react/16.9.0/umd/react.development.js"></script>
+<!-- react dom库 -->
+<script src="https://cdn.bootcss.com/react-dom/16.9.0/umd/react-dom.development.js"></script>
+<!-- jsx 语法库 -->
+<script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.js"></script>
+<script type="text/babel">
+    class App extends React.Component{
+        constructor(props){
+            super(props)
+            this.state = {
+                content:"",
+            }
+        }
+        handelClick=(e)=>{
+            // 阻止默认行为
+            e.preventDefault()
+            // console.log(this.content.value)
+            if(this.content.value==""){
+                return
+            }
+            this.setState({
+                content:this.content.value
+            })
+            alert(this.content.value)
+        }
+        render() {
+            return (
+                <div>
+                    <form action="">
+                        <span>开始</span>&nbsp;
+                        <input ref={input=>this.content = input} type="text"/>&nbsp;
+                        <button onClick={this.handelClick}>提交</button>
+                    </form>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<App/>,document.getElementById("app"))
+    </script>
+
+</html>

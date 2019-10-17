@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>条件渲染</title>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+<!-- react 核心库 -->
+<script src="https://cdn.bootcss.com/react/16.9.0/umd/react.development.js"></script>
+<!-- react dom库 -->
+<script src="https://cdn.bootcss.com/react-dom/16.9.0/umd/react-dom.development.js"></script>
+<!-- jsx 语法库 -->
+<script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.js"></script>
+<script type="text/babel">
+    // class App extends React.Component{
+    //     constructor(props){
+    //         super(props)
+    //     }
+    //     render() {
+    //         if(this.props.isShow){
+    //             return <Login></Login>
+    //         }else{
+    //             return <Register></Register>
+    //         }
+    //     }
+    // }
+    // class Login extends React.Component{
+    //     constructor(props){
+    //         super(props)
+    //     }
+    //     render() {
+    //         return (
+    //             <div>
+    //                 LOGIN
+    //             </div>
+    //         )
+    //     }
+    // }
+    // class Register extends React.Component{
+    //     constructor(props){
+    //         super(props)
+    //     }
+    //     render() {
+    //         return (
+    //             <div>
+    //                 RIGISTER
+    //             </div>
+    //         )
+    //     }
+    // }
+    // ReactDOM.render(<App isShow={false}/>,document.getElementById("app"))
+
+    class App extends React.Component{
+        constructor(props){
+            super(props)
+            this.state = {
+                isShow:true
+            }
+            this.handleClick = this.handleClick.bind(this)
+        }
+        render() {
+            let {isShow} = this.state
+            // console.log(isShow)
+            if(isShow){
+                return (
+                    <div>
+                    <Login></Login>
+                    <button onClick={this.handleClick}>开始</button>
+                    </div>
+                )
+            }else{
+                return (
+                    <div>
+                        <Register></Register>
+                    <button onClick={this.handleClick}>开始</button>
+                    </div>
+                )
+            }
+        }
+
+        handleClick(){
+            let {isShow} = this.state
+            setInterval(() => {
+                this.setState({
+                isShow:!isShow
+            })
+            }, 3000);
+        }
+    }
+    class Login extends React.Component{
+        constructor(props){
+            super(props)
+        }
+        render() {
+            return (
+                <div>
+                    <img src="./img/1.jpg"/>
+                </div>
+            )
+        }
+    }
+    class Register extends React.Component{
+        constructor(props){
+            super(props)
+        }
+        render() {
+            return (
+                <div>
+                    <img src="./img/2.jpg"/>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<App/>,document.getElementById("app"))
+    </script>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>hello react</title>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+</body>
+<!-- 引用react的js库 -->
+<script src="https://cdn.bootcss.com/react/16.9.0/umd/react.development.js"></script>
+<!-- 引用react的dom -->
+<script src="https://cdn.bootcss.com/react-dom/16.9.0/umd/react-dom.development.js"></script>
+<!-- 引用babel -->
+<script src="https://cdn.bootcss.com/babel-standalone/6.25.0/babel.js"></script>
+<script type="text/babel">
+    // JSX语法
+    // const rDom = <h1>Hello react!</h1>
+    // ReactDOM.render(),有3个参数。1.element 2.container 3.call back
+    // ReactDOM.render(rDom,document.getElementById("app"))
+// 放变量
+    // const name = "zgp"
+    // const rDom = <h1>Hello {name}</h1>
+    // ReactDOM.render(rDom,document.getElementById("app"))
+// 放函数
+    const obj = {
+        a: "teacher",
+        b: "student"
+    }
+    function job(obj) {
+        return obj.a+" and "+obj.b
+    }
+    const rDom = <h1>Hello {job(obj)}</h1>
+    ReactDOM.render(rDom,document.getElementById("app"))
+
+    //   # js代码一定要写在{}内
+    
+</script>
+
+</html>

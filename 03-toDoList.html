@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>toDoList</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+</body>
+<!-- react 核心库 -->
+<script src="https://cdn.bootcss.com/react/16.9.0/umd/react.development.js"></script>
+<!-- react dom库 -->
+<script src="https://cdn.bootcss.com/react-dom/16.9.0/umd/react-dom.development.js"></script>
+<!-- jsx 语法库 -->
+<script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.js"></script>
+
+<script type="text/babel">
+    class App extends React.Component{
+        constructor(props){
+            super(props)
+            this.state = {
+                list:[]
+            }
+        }
+        getData=(data)=>{
+            this.setState({
+                list:data
+            })
+        }
+        render() {
+            return (
+                <div>
+                    <h1>Simple to do list</h1>
+                    <ToDoAdd postData={this.getData} list={this.state.list}/>
+                    <ToDoList list={this.state.list}/>
+                </div>
+            )
+        }
+    }
+    class ToDoAdd extends React.Component{
+        constructor(props){
+            super(props)
+        }
+        handelClick=()=>{
+            if(this.content.value==""){
+                return
+            }
+            this.props.list.unshift(this.content.value)
+            this.props.postData(this.props.list)
+            this.content.value=""
+            // console.log(this.props.list)
+        }
+        render() {
+            return (
+                <div>
+                    <input ref={input=>this.content = input} type="text"/>
+                    <button onClick={this.handelClick}>add</button>
+                </div>
+            )
+        }
+    }
+    class ToDoList extends React.Component{
+        constructor(props){
+            super(props)
+            
+        }
+        render() {
+            return (
+                <ul>
+                    {this.props.list.map((item,index)=><li key={index}>{item}</li>)}
+                </ul>
+            )
+        }
+    }
+   
+    ReactDOM.render(<App/>,document.getElementById("app"))
+    </script>
+
+</html>

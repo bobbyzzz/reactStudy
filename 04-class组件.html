@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>类组件</title>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+<!-- 引用react的js库 -->
+<script src="https://cdn.bootcss.com/react/16.9.0/umd/react.development.js"></script>
+<!-- 引用react的dom -->
+<script src="https://cdn.bootcss.com/react-dom/16.9.0/umd/react-dom.development.js"></script>
+<!-- 引用babel -->
+<script src="https://cdn.bootcss.com/babel-standalone/6.25.0/babel.js"></script>
+<!-- ts -->
+<!-- 对props进行一个格式化校验 -->
+<script src="https://cdn.bootcss.com/prop-types/15.7.2/prop-types.js"></script>
+<script type="text/babel">
+// class 子extends父组件
+class Welcome extends React.Component {
+    // 默认
+    static defaultProps = {
+        name:"zgp"
+    }
+    // 不加props this.props会是undefined
+    constructor(props){
+        super(props)
+    }
+    // 重写render
+    render() {
+        console.log(this)
+        return (
+            <div>
+            <h1>Welcome {this.props.name}</h1>
+            <h1>{this.props.year}</h1>
+            </div>
+        )
+    }
+}
+// 组件类型固定化
+Welcome.propTypes = {
+    // 类型string  是否必须isRequired
+    name: PropTypes.string.isRequired,
+    age: PropTypes.number.isRequired
+}
+ReactDOM.render(<Welcome name="to Beijing" year={new Date().toLocaleDateString()}/>,document.getElementById("app"))
+</script>
+
+</html>

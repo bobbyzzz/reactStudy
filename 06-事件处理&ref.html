@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="app"></div>
+<!-- React核心库 -->
+<script src="https://cdn.bootcss.com/react/16.9.0/umd/react.development.js"></script>
+<!-- React拓展库 -->
+<script src="https://cdn.bootcss.com/react-dom/16.9.0/umd/react-dom.development.js"></script>
+<!-- jsx转化库 -->
+<script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.js"></script>
+<!-- props-types -->
+<script src="https://cdn.bootcss.com/prop-types/15.7.2/prop-types.js"></script>
+<script type="text/babel">
+    class FormComponent extends React.Component {
+        constructor(props) {
+            super(props)
+            this.handelClick = this.handelClick.bind(this)
+            this.handelChange = this.handelChange.bind(this)
+            this.handelBlur = this.handelBlur.bind(this)
+            this.state = {
+                content: ''
+            }
+        }
+
+        handelClick() {
+            if (this.state.content == '') {
+                return
+            }
+            // alert(this.state.content)
+            // console.log(this.xxx)
+            alert(this.xxx.value)
+            // alert(this.refs.content.value)
+        }
+
+        handelChange(e) {
+            this.setState({
+                content: e.target.value
+            })
+        }
+
+        handelBlur(e) {
+            if (e.target.value == '') {
+                return
+            }
+            alert(e.target.value)
+        }
+
+        render() {
+            console.log(this)
+            return (
+                <div>
+                    {/*<input ref="content" type="text" onChange={this.handelChange}/> &nbsp;&nbsp;*/}
+                    <input ref={input => this.xxx = input} type="text" onChange={this.handelChange}/> &nbsp;&nbsp;
+                    <button onClick={this.handelClick}>提示输入数据</button>
+                    &nbsp;&nbsp;
+                    <input onBlur={this.handelBlur} type="text" placeholder="失去焦点提示数据"/>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<FormComponent/>, document.getElementById('app'))
+</script>
+</body>
+</html>

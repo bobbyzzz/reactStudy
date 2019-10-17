@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>class</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 定义个类
+    class Person {
+        // 静态属性
+        constructor(){
+            this.foot = 2
+            this.head = 1
+            this.name = "张三"
+            this.age = 18
+        }
+        // 方法
+        getFoot(){
+            return this.foot
+        }
+        
+    }
+   
+    // 继承
+    // 写student类 extends
+    // 子类extends父类
+    class Student extends Person {
+        constructor() {
+            super()
+        }
+        getHead(){
+            return this.head
+        }
+        
+    }
+
+    const p1 = new Person()
+    console.log(p1.foot)
+    console.log(p1.getFoot())
+    const s1 = new Student()
+    console.log(s1.head)
+    console.log(s1.getHead())
+    console.log(s1.name)
+    console.log(s1.age)
+
+</script>
+</html>

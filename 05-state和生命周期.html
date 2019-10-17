@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+<div id="app"></div>
+<!-- React核心库 -->
+<script src="https://cdn.bootcss.com/react/16.9.0/umd/react.development.js"></script>
+<!-- React拓展库 -->
+<script src="https://cdn.bootcss.com/react-dom/16.9.0/umd/react-dom.development.js"></script>
+<!-- jsx转化库 -->
+<script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.js"></script>
+<!-- props-types -->
+<script src="https://cdn.bootcss.com/prop-types/15.7.2/prop-types.js"></script>
+<script type="text/babel">
+    // class Hello extends React.Component {
+    //     constructor(props) {
+    //         super(props)
+    //         this.state = {
+    //             msg: 'React',
+    //             color: 'red',
+    //             fontSize: '20px'
+    //         }
+    //         // bind call apply
+    //         // bind返回一个修改了this指向的新的函数
+    //         this.handelCilck = this.handelCilck.bind(this)
+    //     }
+    //
+    //     // 自己定义的方法内部this都是undefined
+    //     handelCilck() {
+    //         console.log(this) // Hello
+    //         // 修改状态
+    //         // 单向数据流
+    //         this.setState({
+    //             msg: 'React-16.9'
+    //         })
+    //     }
+    //
+    //     render() {
+    //         // 对象的解构赋值
+    //         const {color, fontSize} = this.state
+    //         // const color = 'red'
+    //         return (
+    //             <div>
+    //                 <p style={{color, fontSize}}>Hello {this.state.msg}</p>
+    //                 <hr/>
+    //                 <button onClick={this.handelCilck}>change</button>
+    //             </div>
+    //         )
+    //     }
+    // }
+    //
+    // ReactDOM.render(<Hello/>, document.getElementById('app'))
+
+    // 二大阶段:第一阶段 初始化阶段 第二阶段 更新阶段
+    class Deom extends React.Component {
+        constructor(props) {
+            console.log('constructor')
+            super(props)
+            this.state = {
+                opacity: 1,
+                color: 'black'
+            }
+            this.tick = this.tick.bind(this)
+            this.handelUnMount = this.handelUnMount.bind(this)
+        }
+
+        // 组件创建之前
+        componentWillMount() {
+            console.log('componentWillMount')
+        }
+
+        // 在组件渲染完毕
+        componentDidMount() {
+            console.log('componentDidMount')
+            this.timerID = setInterval(this.tick, 500)
+        }
+
+        tick() {
+            console.log(1)
+            let {opacity} = this.state
+            opacity -= 0.1
+            this.setState({
+                opacity
+            })
+            if (opacity <= 0) {
+                this.setState({
+                    opacity: 1
+                })
+            }
+        }
+
+        // 准备更新
+        shouldComponentUpdate() {
+            console.log('shouldComponentUpdate')
+            return true
+        }
+
+        // 更新之前
+        componentWillUpdate() {
+            console.log('componentWillUpdate')
+        }
+
+        // 更新完毕
+        componentDidUpdate() {
+            console.log('componentDidUpdate')
+        }
+
+        handelUnMount() {
+            ReactDOM.unmountComponentAtNode(document.getElementById('app'))
+        }
+
+        componentWillUnmount() {
+            clearInterval(this.timerID)
+        }
+
+        render() {
+            console.log('render')
+            const {opacity, color} = this.state
+            return (
+                <div>
+                    <h1 style={{opacity, color}}>react学不会,怎么办</h1>
+                    <button className="btn" onClick={this.handelUnMount}>不活了</button>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<Deom/>, document.getElementById('app'))
+</script>
+</body>
+</html>
