@@ -1,1 +1,6 @@
 https://www.jianshu.com/p/e16a9da931ec
+ react 组件首字母大写
+ 三大属性  props ref state
+ props是外部传进来的值    state是内部的值
+ bind()方法返回一个修改this指向的新函数
+ react打包  在json文件中，就在里面写一个"homepage":"./"
